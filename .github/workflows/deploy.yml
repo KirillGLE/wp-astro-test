@@ -3,6 +3,11 @@ name: Deploy Astro to Apache server via SSH
 on:
     push:
         branches: ["main"]
+    repository_dispatch:
+        types: [wp-content-updated]
+    workflow_dispatch:
+    schedule:
+        - cron: "0 */6 * * *"
 
 jobs:
     deploy:
