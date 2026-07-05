@@ -190,9 +190,9 @@ class Astro_GitHub_Rebuild_Webhook {
         if (wp_doing_ajax() || wp_doing_cron()) {
             return false;
         }
-        if (defined('REST_REQUEST') && REST_REQUEST) {
-            return false;
-        }
+        // if (defined('REST_REQUEST') && REST_REQUEST) {
+        //     return false;
+        // }
 
         $pat   = $this->options['github_pat'] ?? '';
         $owner = $this->options['github_owner'] ?? '';
