@@ -1,0 +1,27 @@
+---
+import { getPosts } from '../../lib/wp';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{post.title.rendered}</title>
+  </head>
+  <body>
+    <a href="/">← назад</a>
+    <h1 set:html={post.title.rendered} />
+    <div set:html={post.content.rendered} />
+  </body>
+</html>
